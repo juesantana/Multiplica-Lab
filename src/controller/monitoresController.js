@@ -61,12 +61,59 @@ const createMonitor = async (req,res) => {
     } catch (error){
         res.status(500).json({ message: error.message})
     }
+};
+
+const updateMonitor = async (req, res) => {
+    try {
+        const updateMonitores = await Monitores.findById (req.params.id);
+        if (updateMonitores){
+            updateMonitores.name = req.body.name || updateMonitores.name
+            updateMonitores.cpf = req.body.cpf || updateMonitores.cpf
+            updateMonitores.email = req.body.email  || updateMonitores.email
+            updateMonitores.age = req.body.age || updateMonitores.age
+            updateMonitores.university = req.body.university || updateMonitores.university
+            updateMonitores.course = req.body.course || updateMonitores.course
+            updateMonitores.subject = req.body.subject || updateMonitores.subject
+            updateMonitores.experience  = req.body.experience || updateMonitores.experience
+            updateMonitores.termsOfUse = req.body.termsOfUse || updateMonitores.termsOfUse
+
+            const saveUpdateMonitor = await updateMonitores.save();
+            res.status(200).json({
+                message: "Dados do monitor atualizado com sucesso",
+                saveUpdateMonitor
+            })
+
+        }
+
+        res.status(400).json({
+            mensagem: "monitor(a) não foi localizado(a)!"
+        })
+    } catch (error) {
+        return res.status(404).send({ message: error.message });
+    }
+};
+
+const deleteMonitor = async (req, res) => {
+    try {
+        const deleteMonitores = await Monitores.findById(req.params.id);
+        if ( deleteMonitores == null) {
+            return res.status(404).json ({
+                message: "Monitor não foi encotrado."});
+        }
+     await deleteMonitores.delete();
+     return res.status(204).json ({ message: "Cadastro foi deletado com sucesso!" })
+    } catch (error){
+        return  res.status (500).json({ message: error.message})
+    }
 }
+
 
 
 module.exports ={
     getAll,
     getById,
     getByName,
-    createMonitor
+    createMonitor,
+    updateMonitor,
+    deleteMonitor
 }
