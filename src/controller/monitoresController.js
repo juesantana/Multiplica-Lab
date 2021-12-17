@@ -1,4 +1,7 @@
 const Monitores = require ("../models/monitoresSchema");
+const {hashPassword} = require ("../helpers/auth")
+const bcrypt = require ("bcrypt");
+const  jwt = require ("jsonwebtoken")
 
 const getAll = async (req, res) => {
     try{
@@ -53,7 +56,13 @@ const createMonitor = async (req,res) => {
         if(newMonitor.termsOfUse == false) {
             res.status(204).json({ message:"para se cadastrar no banco de dados de monitores é necessário aceitar os termos de uso"});
         }
+
+        const passwordHased = await hashPassword (newMonitor.password , res);
+        newMonitor.password = passwordHased
         const saveMonitores = await newMonitor.save();
+
+
+
 
         res.status  (201).json ({
             message: " Seu cadastro de monitor no MultiplicaLab foi realizado com sucesso!"
@@ -107,6 +116,31 @@ const deleteMonitor = async (req, res) => {
     }
 }
 
+const loginMonitores = async (req, res) => {
+    const {email, password} = req.body;
+    try{
+    const userRequired = await Monitores.findOne({email: email});
+  
+    if (!userRequired) {
+      return res.status(404).json({message: "Usuário não encontrado"})
+    }
+  
+    const checkPassword = await bcrypt.compare(password, userRequired.password);
+  
+    if (!checkPassword) {
+      return res.status(404).json({message: "Senha incorreta"})
+    }
+  
+    const secret = process.env.SECRET;
+    const token = jwt.sign(
+      { id: userRequired._id}, secret)
+  
+    return res.status(200).json({message: "Auth", token});
+  } catch(error) {
+    return res.status(500).json({message: error.message})
+  }
+  }
+
 
 
 module.exports ={
@@ -115,5 +149,6 @@ module.exports ={
     getByName,
     createMonitor,
     updateMonitor,
-    deleteMonitor
+    deleteMonitor,
+    loginMonitores
 }

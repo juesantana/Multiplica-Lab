@@ -1,4 +1,4 @@
-const mongoose = require ("mongoose");
+ mongoose = require ("mongoose");
 
 const monitoresSchema = new mongoose.Schema ({
     id: mongoose.Schema.Types.ObjectId,
@@ -51,6 +51,11 @@ const monitoresSchema = new mongoose.Schema ({
         type: Boolean,
         required: true,
         default: false
+     },
+
+     password: {
+         type: String,
+         require:true
      },
 
     created: {
