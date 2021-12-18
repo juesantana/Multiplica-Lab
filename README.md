@@ -152,7 +152,7 @@ $ npm start
 - experience: texto e obrigatório
 - termsOfUse: booleano e obrigatório
 - password: texto e obrigatório  
-- criadoEm: data gerada automaticamente e obrigatório
+- created: data gerada automaticamente e obrigatório
 
  ## ✅ Dados para Collection Login:
 
@@ -164,6 +164,7 @@ $ npm start
 - EnsinoMédia: booleano e obrigatório
 - password: texto e obrigatório
 - termosDeUso: texto e obrigatório
+- created: data gerada automaticamente e obrigatório
 
 
 ### 🚧 Projeto em Construção
