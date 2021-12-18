@@ -14,7 +14,7 @@ const createLogin = async (req, res)=> {
         const escolas = await Escolas.create(body);
         escolas.password = undefined;
         return res.status(201).json ({
-            message: "Escola cadastrada com sucesso!", escolas
+            message: "Escola cadastrada com sucesso!"
         });
 
 

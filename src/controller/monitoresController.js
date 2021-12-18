@@ -20,8 +20,8 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
 try {
-    const {id} = req.params;
-    const monitores = await Monitores.findById();
+    const { id } = req.params;
+    const monitores = await Monitores.findById(id);
    
     if(monitores == undefined || id == "") {
         return res.status(404).json ({
@@ -50,6 +50,38 @@ const getByName = async (req, res) => {
 }
 };
 
+const getByBairro = async (req, res) => {
+    try{   
+       const bairro = req.query.bairro;
+           const bairroMonitor = await Monitores.find( {bairro: bairro});
+   
+   
+           if(bairroMonitor == undefined ||  bairro == "") {
+               return res.status(404).json ({
+                   message:`não foi localizado nenhum monitor(a) do ${bairro}!`})
+           }
+           return res.status (200).send (bairroMonitor);
+   } catch (error) {
+       return  res.status(500).json ({message: error.message})
+   }
+};
+
+const getBySubject = async (req, res) => {
+    try{   
+       const materia = req.query.subject;
+           const materiaMonitor = await Monitores.find( {subject: materia});
+   
+   
+           if(materiaMonitor == undefined ||  materia == "") {
+               return res.status(404).json ({
+                   message:`não foi localizado nenhum monitor(a) que aulas de ${materia}!`})
+           }
+           return res.status (200).send (materiaMonitor);
+   } catch (error) {
+       return  res.status(500).json ({message: error.message})
+   }
+};
+
 const createMonitor = async (req,res) => {
     try {
         const newMonitor = await new Monitores(req.body);
@@ -64,8 +96,8 @@ const createMonitor = async (req,res) => {
 
 
 
-        res.status  (201).json ({
-            message: " Seu cadastro de monitor no MultiplicaLab foi realizado com sucesso!"
+        res.status(201).json ({
+            message: " Seu cadastro de monitor no MultiplicaLab foi realizado com sucesso!", saveMonitores
         })
     } catch (error){
         res.status(500).json({ message: error.message})
@@ -110,7 +142,7 @@ const deleteMonitor = async (req, res) => {
                 message: "Monitor não foi encotrado."});
         }
      await deleteMonitores.delete();
-     return res.status(204).json ({ message: "Cadastro foi deletado com sucesso!" })
+     return res.status(200).json ({ message: "Cadastro foi deletado com sucesso!" })
     } catch (error){
         return  res.status (500).json({ message: error.message})
     }
@@ -147,6 +179,8 @@ module.exports ={
     getAll,
     getById,
     getByName,
+    getByBairro,
+    getBySubject,
     createMonitor,
     updateMonitor,
     deleteMonitor,

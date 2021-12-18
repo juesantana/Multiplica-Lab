@@ -36,6 +36,11 @@ const EscolaSchema = new mongoose.Schema ({
         required: true,
         default: false
      },
+     
+     password: {
+        type: String,
+        require:true
+    },
 
     created: {
         type: Date,

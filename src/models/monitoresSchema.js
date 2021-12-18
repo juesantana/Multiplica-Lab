@@ -14,6 +14,11 @@ const monitoresSchema = new mongoose.Schema ({
         select: false,
         unique: true
     },
+
+    bairro:{
+        type:String,
+        required: true
+    },
      email:{
          type: String,
          required: true,

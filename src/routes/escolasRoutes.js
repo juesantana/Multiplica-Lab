@@ -4,7 +4,7 @@ const controllerEscola = require ("../controller/escolasLoginController");
 const { checkAuth } = require("../middlewares/auth");
 
 
-router.post("/createLogin", controllerEscola.createLogin);
+router.post("/create", controllerEscola.createLogin);
 
 router.post("/login", controllerEscola.loginEscola);
 
