@@ -32,7 +32,7 @@ Já as escolas, também por meio de cadastro, conseguem realizar login e acessar
 - Conseguir buscar os dados dos monitores por uma rota privada;
 - Cadastrar monitores voluntários e escolas públicas do ensino médio;
 - Atualizar os dados dos monitores caso haja mudança;
-- Deletar cadastros caso os monitores não possam mais realizar as monitorias voluntarias.
+- Deletar cadastros caso os monitores não possam mais realizar as monitorias voluntárias.
 <br>
 
 
