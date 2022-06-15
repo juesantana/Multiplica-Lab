@@ -173,6 +173,6 @@ $ npm start
 - Fazer implementações que impeçam updates e deletes entre logins
 
 ##  👨‍💻 Meus contatos:
-- [linkedin](https://www.linkedin.com/in/juliana-santana-53a630b9/)
+- [linkedin](https://www.linkedin.com/in/juliana-a-santana)
 - [github](https://github.com/juesantana)
 - email: juesantana@gmail.com
