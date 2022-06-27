@@ -35,7 +35,9 @@ Já as escolas, também por meio de cadastro, conseguem realizar login e acessar
 - Deletar cadastros caso os monitores não possam mais realizar as monitorias voluntárias.
 <br>
 
+## Link para apresentação do projeto: https://www.canva.com/design/DAEyqnAeLNY/Yso2Hc77u-BhP_Co5kFzAQ/view?utm_content=DAEyqnAeLNY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton#8
 
+ <br>
 ## ✅Aprendizados
 
 Criação de uma API fundamentada no CRUD, que são:  CREATE (CRIAR), READ(LER-CONSULTA), UPDATE(ATUALIZAR) e DELETE(DESTRUIÇÃO). 
